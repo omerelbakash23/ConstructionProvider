@@ -1,0 +1,102 @@
+
+//     final checkotpModel = checkotpModelFromJson(jsonString);
+
+// ignore_for_file: file_names
+
+import 'dart:convert';
+
+CheckotpModel checkotpModelFromJson(String str) => CheckotpModel.fromJson(json.decode(str));
+
+String checkotpModelToJson(CheckotpModel data) => json.encode(data.toJson());
+
+class CheckotpModel {
+    int? status;
+    String? message;
+    Data? data;
+
+    CheckotpModel({
+        this.status,
+        this.message,
+        this.data,
+    });
+
+    factory CheckotpModel.fromJson(Map<String, dynamic> json) => CheckotpModel(
+        status: json["status"],
+        message: json["message"],
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "status": status,
+        "message": message,
+        "data": data?.toJson(),
+    };
+}
+
+class Data {
+    int? id;
+    int? code;
+    String? via;
+    String? expiredAt;
+    User? user;
+
+    Data({
+        this.id,
+        this.code,
+        this.via,
+        this.expiredAt,
+        this.user,
+    });
+
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
+        id: json["id"],
+        code: json["code"],
+        via: json["via"],
+        expiredAt: json["expired_at"],
+        user: json["user"] == null ? null : User.fromJson(json["user"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "code": code,
+        "via": via,
+        "expired_at": expiredAt,
+        "user": user?.toJson(),
+    };
+}
+
+class User {
+    int? id;
+    String? type;
+    String? name;
+    String? email;
+    String? phone;
+    String? token;
+
+    User({
+        this.id,
+        this.type,
+        this.name,
+        this.email,
+        this.phone,
+        this.token,
+    });
+
+    factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"],
+        type: json["type"],
+        name: json["name"],
+        email: json["email"],
+        phone: json["phone"],
+        token: json["token"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "type": type,
+        "name": name,
+        "email": email,
+        "phone": phone,
+        "token": token,
+    };
+}
