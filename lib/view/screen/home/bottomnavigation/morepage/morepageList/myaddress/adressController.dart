@@ -15,15 +15,12 @@ class adressitems
 
 abstract class AddAdresscontroller extends GetxController{
 
+ List <adressitems>Adresses = [];
 
-  List <adressitems>Adresses = [];
 
 
 AddAdressTolist(adressitems myadresses);
 removeadressfromlist(int index);
-
-updateing();
-
 
 }
 
@@ -40,21 +37,17 @@ res = await checkInterNet();
 
 
   @override
-  AddAdressTolist(myadresses) {
+  AddAdressTolist(myadresses)  {
  Adresses.add(myadresses);
- update();
+ update(Adresses);
   }
   
   @override
  removeadressfromlist(int index) {
   Adresses.removeAt(index);
-  update();
+  update(Adresses);
   }
   
-  @override
-  updateing() {
-    update();
-  }
 
 
 
