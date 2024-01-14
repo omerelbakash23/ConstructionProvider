@@ -1,7 +1,8 @@
 
 
-// ignore_for_file: file_names, implementation_imports, camel_case_types, non_constant_identifier_names, unnecessary_brace_in_string_interps, avoid_print
+// ignore_for_file: file_names, implementation_imports, camel_case_types, non_constant_identifier_names, unnecessary_brace_in_string_interps, avoid_print, unused_local_variable
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:constructionprovider1/core/Class/statuesResult.dart';
@@ -59,12 +60,14 @@ class signupControllerIMp extends signUpController {
 
 
   @override
-  void onInit() {
+  void onInit() async {
     emailscontroller = TextEditingController();
     passwordcontroller = TextEditingController();
     usernamecontroller = TextEditingController();
     phonenumbercontroller = TextEditingController();
     addresscontroller = TextEditingController();
+    await Citycontroller.getcities();
+
     super.onInit();
   }
 
@@ -82,7 +85,7 @@ class signupControllerIMp extends signUpController {
     loadbuttons =false;
       formdata.FormData formData = formdata.FormData.fromMap(
       {
-      "image": await multipart.MultipartFile.fromFile(imagescontroller!.path),
+      "image": imagescontroller!=null? await multipart.MultipartFile.fromFile(imagescontroller!.path):"",
       "name": usernamecontroller.text,
       "email": emailscontroller.text,
       "phone":phonenumbercontroller.text ,  
@@ -102,7 +105,8 @@ class signupControllerIMp extends signUpController {
           }
         )
         );
-        print(response.data);
+      var initdata= json.decode(response.data);
+      print("my dataaaaa $initdata");
     if (response.statusCode == 200) {
        Get.defaultDialog(title:"",content: const Peldgedialog());
       codes=response.data["data"]["code"].toString();
@@ -115,11 +119,9 @@ class signupControllerIMp extends signUpController {
        emailscontroller.clear();
     } 
     else {
+     
       loadbuttons=false;
-      Get.defaultDialog(
-          title:"",
-          content: Text(
-              "${response.data["message"].toString()}\n  "));
+       Get.defaultDialog(title: "",content:  Center(child: Text(initdata['message'].toString())));
     }
   
     

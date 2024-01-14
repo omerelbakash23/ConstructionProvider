@@ -15,7 +15,6 @@ class CustomField4 extends StatefulWidget {
 }
 int? city_idscontroller;
 bool isopen = false;
-var loading =true.obs;
 CityModel ? selectedCity ;
 
 
@@ -30,11 +29,10 @@ class _CustomField4State extends State<CustomField4> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InkWell(
-          onTap: () async {
+          onTap: ()  {
             setState(()  {
               isopen = !isopen;
             });
-           await Citycontroller.getcities();
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 10, right: 20, left: 20),
@@ -74,7 +72,7 @@ class _CustomField4State extends State<CustomField4> {
               child: Container(decoration: BoxDecoration(color: Colors.white,borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),border: Border.all(color: const Color.fromARGB(48, 158, 158, 158))),
                 child: Center(
                   child:
-                   loading.value==true ?SizedBox(height: MediaQuery.of(context).size.height*.15,child: const Center(child: CircularProgressIndicator(color:AppColors.colorsbutton,))):
+                   Citycontroller.isloading.value==true ?SizedBox(height: MediaQuery.of(context).size.height*.15,child: const Center(child: CircularProgressIndicator(color:AppColors.colorsbutton,))):
                   ListView.builder(itemCount:Citycontroller.CitiesList.length ,
                       primary: true,
                       shrinkWrap: true,

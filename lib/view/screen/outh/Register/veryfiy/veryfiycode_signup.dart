@@ -140,7 +140,8 @@ class _VeryFiyCodesignupState extends State<VeryFiyCodesignup> {
 
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Center(child: Text("the code untile backend send massage at phone \n ${controllers.codes.toString()}",textAlign: TextAlign.center,)),
+                  child: 
+                  GetBuilder<signupControllerIMp>(builder:(controller) => Center(child: Text("the code untile backend send massage at phone \n ${controllers.codes.toString()}",textAlign: TextAlign.center,))),
                 ),
               
               const SizedBox(

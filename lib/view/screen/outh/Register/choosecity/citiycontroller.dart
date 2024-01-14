@@ -12,7 +12,7 @@ import 'package:get/get.dart';
     var CitiesList =<CityModel>[].obs;
     var isloading =true.obs;
    bool check=true;
-   
+
 
 
 
