@@ -106,13 +106,12 @@ class _MassagepageState extends State<Massagepage> {
                         },
                         child: Container(
                             width: double.infinity,
-                            height: 80,
+                            height: MediaQuery.of(context).size.height*.08,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              textDirection: TextDirection.rtl,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(12.0),

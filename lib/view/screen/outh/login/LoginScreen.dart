@@ -77,7 +77,7 @@ class LoginScreen extends StatelessWidget{
                                        ),
                      ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20,right: 20,left: 20),
+                      padding:  EdgeInsets.only(top: 20,right: MediaQuery.of(context).size.width*.01,left: MediaQuery.of(context).size.width*.01),
                       child: Row(textDirection: TextDirection.rtl,mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [ 
                        Row(textDirection: TextDirection.rtl,children: [
                          GetBuilder<LoginControllerIMp>(builder: (controller) => 
