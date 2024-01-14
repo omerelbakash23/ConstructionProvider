@@ -7,7 +7,6 @@ import 'package:constructionprovider1/core/Class/statuesResult.dart';
 import 'package:constructionprovider1/core/constant/ImageAssets.dart';
 import 'package:constructionprovider1/core/constant/elvatedbutton.dart';
 import 'package:constructionprovider1/core/function/validinput.dart';
-import 'package:constructionprovider1/view/screen/outh/Register/veryfiy/veryfiy_signup_controller.dart';
 import 'package:constructionprovider1/view/screen/outh/login/LoginScreen.dart';
 import 'package:constructionprovider1/view/widget/customAnimation/customanimationsign.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,6 @@ class SignUpScreen extends GetView<signupControllerIMp> {
   @override
   Widget build(BuildContext context) {
     signupControllerIMp controllers =Get.put(signupControllerIMp());
-    VeryfiysignUPcontrollerimp controlleress=Get.put(VeryfiysignUPcontrollerimp());
       GlobalKey<FormState> formstate = GlobalKey<FormState>();
 
 

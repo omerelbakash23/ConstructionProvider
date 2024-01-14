@@ -58,12 +58,12 @@ class signupControllerIMp extends signUpController {
 
   @override
   void onInit() async {
-    emailscontroller = TextEditingController();
-    passwordcontroller = TextEditingController();
-    usernamecontroller = TextEditingController();
-    phonenumbercontroller = TextEditingController();
-    addresscontroller = TextEditingController();
     await Citycontroller.getcities();
+    // emailscontroller = TextEditingController();
+    // passwordcontroller = TextEditingController();
+    // usernamecontroller = TextEditingController();
+    // phonenumbercontroller = TextEditingController();
+    // addresscontroller = TextEditingController();
 
     super.onInit();
   }
@@ -104,9 +104,6 @@ class signupControllerIMp extends signUpController {
       phonecode = response.data["data"]["user"]['phone'].toString();
       print("code is ${codes}");
       print("ids is ${ids}");
-      usernamecontroller.clear();
-      phonenumbercontroller.clear();
-      emailscontroller.clear();
     } else {
       loadbuttons = false;
       Get.defaultDialog(
@@ -130,9 +127,9 @@ class signupControllerIMp extends signUpController {
   Future resendOtp() async {
     formdata.FormData formData2 =
         formdata.FormData.fromMap({"phone": phonecode});
-    print("phone numer is ${phonenumbercontroller.text}");
-
     var response = await dio.post("${baseUrl}/auth/send-otp", data: formData2);
+     codes=response.data["data"]["code"].toString();
+     print(codes);
     print(response.data);
   }
 
@@ -155,12 +152,12 @@ class signupControllerIMp extends signUpController {
       Get.offAll(() => const BottomNavBarPage());
       prefs.setString("Token", response.data['data']['user']['token']);
     } else {
-      print("basel");
-      Get.defaultDialog(
+Get.defaultDialog(
           title: "",
-          content: const Center(
-              child: Text(
-                  "رمز OTP خاطئ او منتهى برجاء التأكد ثم اعادة المحاولة !")));
-    }
+          content: Center(child: Text(response.data['message'].toString()))); 
+          
+          
+          
+     }
   }
 }

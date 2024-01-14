@@ -12,7 +12,6 @@ import 'package:constructionprovider1/view/screen/outh/Register/customfieldRegis
 import 'package:constructionprovider1/view/screen/outh/Register/customfieldRegister/customfieldcarer.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/customfieldRegister/customfieldcity.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/customfieldRegister/customfieldsecondbranch.dart';
-import 'package:constructionprovider1/view/screen/outh/Register/veryfiy/veryfiy_signup_controller.dart';
 import 'package:constructionprovider1/view/widget/customAnimation/CustomAnimationSignup2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,7 +25,6 @@ class SignUpscreen2 extends StatefulWidget {
 }
 
 signupControllerIMp controller =Get.put(signupControllerIMp());
-VeryfiysignUPcontrollerimp controllers=Get.put(VeryfiysignUPcontrollerimp());
 
 List <IdWithNameModel>kind=[IdWithNameModel(id: 1,name: "service provider"),IdWithNameModel(id: 2,name: "buildings materials provider")];
 File ?selectimage ;

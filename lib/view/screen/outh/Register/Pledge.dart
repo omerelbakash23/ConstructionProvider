@@ -2,7 +2,6 @@
 
 import 'package:constructionprovider1/core/constant/colors.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/RegisterController.dart';
-import 'package:constructionprovider1/view/screen/outh/Register/veryfiy/veryfiy_signup_controller.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/veryfiy/veryfiycode_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +13,6 @@ class Peldgedialog extends StatefulWidget {
   State<Peldgedialog> createState() => _PeldgedialogState();
 }
 signupControllerIMp controller =Get.put(signupControllerIMp());
-VeryfiysignUPcontrollerimp controllers=Get.put(VeryfiysignUPcontrollerimp());
 
 class _PeldgedialogState extends State<Peldgedialog> {
 
