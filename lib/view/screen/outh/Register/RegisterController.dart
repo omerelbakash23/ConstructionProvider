@@ -154,7 +154,7 @@ class signupControllerIMp extends signUpController {
     } else {
 Get.defaultDialog(
           title: "",
-          content: Center(child: Text(response.data['message'].toString()))); 
+          content: const Center(child: Text("Wrong or expired OTP code please check and try again !"))); 
           
           
           

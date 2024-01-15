@@ -33,6 +33,12 @@ late Timer timer;
     });
     }
 
+    @override
+  void dispose() {
+    timers();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +86,7 @@ late Timer timer;
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.all(30.0),
+                padding:  EdgeInsets.only(right:MediaQuery.of(context).size.width*.04 ,left: MediaQuery.of(context).size.width*.04),
                 child: OtpTextField(autoFocus:true,
                     textStyle: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
