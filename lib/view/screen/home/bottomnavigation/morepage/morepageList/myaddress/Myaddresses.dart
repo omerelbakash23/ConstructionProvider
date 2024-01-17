@@ -2,6 +2,7 @@
 
 import 'package:constructionprovider1/core/constant/ImageAssets.dart';
 import 'package:constructionprovider1/core/constant/colors.dart';
+import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/AdressesMOdel/ListAdressesModel.dart';
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/adressController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,12 +13,13 @@ class Myaddresess extends StatefulWidget {
   @override
   State<Myaddresess> createState() => _MyaddresessState();
 }
-
 TextEditingController citytext = TextEditingController();
 TextEditingController describtion = TextEditingController();
 AddAdresscontrollerimp controller = Get.put(AddAdresscontrollerimp());
 
 class _MyaddresessState extends State<Myaddresess> {
+  Datum ?mylist ;
+
   @override
   void initState() {
     citytext.clear();
@@ -34,6 +36,7 @@ class _MyaddresessState extends State<Myaddresess> {
 
   @override
   Widget build(BuildContext context) {
+    
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
@@ -78,7 +81,7 @@ class _MyaddresessState extends State<Myaddresess> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * .70,
             child: ListView.builder(
-                itemCount: controller.Adresses.length,
+                itemCount: controller.datas.length,
                 itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
@@ -118,7 +121,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                             width: 10,
                                           ),
                                           Text(
-                                            controller.Adresses[index].cityname
+                                            controller.datas[index].houseName
                                                 .toString(),
                                             style: Theme.of(context)
                                                 .textTheme
@@ -140,7 +143,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                                       const Color(0xffF9F3BE)),
                                               child: Center(
                                                   child:
-                                                      Text(index.toString()))),
+                                                      Text(controller.datas[index].id.toString()))),
                                         ],
                                       ),
                                       Container(
@@ -256,7 +259,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                                                               backgroundColor: AppColors.colorsbutton),
                                                                           onPressed: () {
                                                                             setState(() {
-                                                                              controller.removeadressfromlist(index);
+                                                                              // controller.removeadressfromlist(index);
                                                                               Get.back();
                                                                             });
                                                                           },
@@ -344,7 +347,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                     child: Center(
                                         child: Text(
                                       textAlign: TextAlign.center,
-                                      controller.Adresses[index].citieslocation
+                                      controller.datas[index].description
                                           .toString(),
                                       style: Theme.of(context)
                                           .textTheme
@@ -374,7 +377,10 @@ class _MyaddresessState extends State<Myaddresess> {
                     backgroundColor: AppColors.colorsbutton,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
-                onPressed: () {
+                onPressed: () async {
+                                     await controller.GetAdress();
+                                     await controller.postAdress();
+
                   setState(() {
                     Get.defaultDialog(
                         title: "",
@@ -575,11 +581,10 @@ class _MyaddresessState extends State<Myaddresess> {
                                               onPressed: () {
                                                 setState(() {
                                                   controller.AddAdressTolist(
-                                                      adressitems(
-                                                          citieslocation:
-                                                              describtion.text,
-                                                          cityname:
-                                                              citytext.text));
+                                                      Datum(
+                                                        description: describtion.text,houseName: citytext.text
+                                                      )
+                                                  );
                                                 });
                                                 Get.back();
                                               },

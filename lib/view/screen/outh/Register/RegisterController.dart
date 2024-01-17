@@ -27,6 +27,7 @@ abstract class signUpController extends GetxController {
   String? codes;
   String? ids;
   String? phonecode;
+  String?Apptoken;
 
   showpass();
   bool issshowpassword = true;
@@ -145,12 +146,12 @@ class signupControllerIMp extends signUpController {
         // will not throw errors
         validateStatus: (status) => true,
       ),
-    );
+    ); 
     print(response.data);
     if (response.statusCode == 200) {
       final SharedPreferences prefs = await _prefs;
       Get.offAll(() => const BottomNavBarPage());
-      prefs.setString("Token", response.data['data']['user']['token']);
+    Apptoken=  prefs.setString("Token", response.data['data']['user']['token']).toString();
     } else {
 Get.defaultDialog(
           title: "",

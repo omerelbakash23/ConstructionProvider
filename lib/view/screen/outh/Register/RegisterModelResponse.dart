@@ -46,7 +46,7 @@ class Data {
         this.code,
         this.via,
         this.expiredAt,
-        this.user,
+        this.user, 
     });
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(

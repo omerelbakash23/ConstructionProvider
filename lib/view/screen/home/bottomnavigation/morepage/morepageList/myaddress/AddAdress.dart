@@ -147,7 +147,6 @@ AddAdresscontrollerimp controlleradd =Get.put(AddAdresscontrollerimp());
                               backgroundColor: AppColors.colorsbutton),
                           onPressed: () {  
                             setState(() {
-                             controlleradd.AddAdressTolist(adressitems(citieslocation: describtion.text, cityname: citytext.text));
                             });
                           Get.back();
 
