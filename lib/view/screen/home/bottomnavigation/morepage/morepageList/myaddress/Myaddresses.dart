@@ -22,6 +22,7 @@ class _MyaddresessState extends State<Myaddresess> {
 
   @override
   void initState() {
+    controller.GetAdress();
     citytext.clear();
     describtion.clear();
 
@@ -259,7 +260,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                                                               backgroundColor: AppColors.colorsbutton),
                                                                           onPressed: () {
                                                                             setState(() {
-                                                                              // controller.removeadressfromlist(index);
+                                                                              controller.removeadressfromlist(index);
                                                                               Get.back();
                                                                             });
                                                                           },
@@ -377,10 +378,7 @@ class _MyaddresessState extends State<Myaddresess> {
                     backgroundColor: AppColors.colorsbutton,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
-                onPressed: () async {
-                                     await controller.GetAdress();
-                                     await controller.postAdress();
-
+                onPressed: () {
                   setState(() {
                     Get.defaultDialog(
                         title: "",

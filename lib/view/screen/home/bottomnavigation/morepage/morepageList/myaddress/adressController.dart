@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, file_names, non_constant_identifier_names, avoid_print, prefer_typing_uninitialized_variables, unnecessary_brace_in_string_interps, empty_constructor_bodies, avoid_types_as_parameter_names, avoid_renaming_method_parameters, collection_methods_unrelated_type
+// ignore_for_file: camel_case_types, file_names, non_constant_identifier_names, avoid_print, prefer_typing_uninitialized_variables, unnecessary_brace_in_string_interps, empty_constructor_bodies, avoid_types_as_parameter_names, avoid_renaming_method_parameters, collection_methods_unrelated_type, unused_local_variable
 
 import 'dart:convert';
 
@@ -10,52 +10,10 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 
+class GetAdressServices {
 
 
-signupControllerIMp controller=Get.put(signupControllerIMp());
-
-
-abstract class AddAdresscontroller extends GetxController{
-  GetAdress();
-    postAdress();
-
-
-//  List <ListAdresses>Adresses = [];
-
-List <Datum>datas=[];
-
-
-AddAdressTolist(Datum datas);
-// removeadressfromlist(int index);
-
-}
-
-class AddAdresscontrollerimp extends AddAdresscontroller{
-    statuesRequest ?statesrequest ;
-  
-
-    var res ;
-initaldata() async {
-res = await checkInterNet();
-}
-
-
-
-
-  @override
-  AddAdressTolist(items)  {
- datas.add(items);
- update(datas);
-  }
-  
-//   @override
-//  removeadressfromlist(index) {
-//   datas.removeAt(index);
-//   update(datas);
-//   }
-  
-  @override
-   Future GetAdress() async {
+static Future<List<Datum>> Getadresses()async {
 var headers = {
   'Accept': 'application/json',
   'Authorization': 'Bearer 11|5Uhog019fR8DahWU8eIrTmbeYZNxDjyf53fsQL2gce17affd'
@@ -68,16 +26,76 @@ var response = await dio.request(
     headers: headers,
   ),
 );
-
-if (response.statusCode == 200) {
-  print(json.encode(response.data));
+var Adresses =response.data as Map<String,dynamic>;
+if (response.statusCode==200) {
+  ListAdresses listAdressesFromJson = ListAdresses.fromJson(Adresses);
+ return listAdressesFromJson.data??[];
+  
+}else{
+  return throw Exception("");
 }
-else {
-  print(response.statusMessage);
-}
-return response ;
 
+
+}
+
+}
+
+signupControllerIMp controller=Get.put(signupControllerIMp());
+
+
+abstract class AddAdresscontroller extends GetxController{
+  GetAdress();
+    postAdress();
+        var datas =<Datum>[].obs;
+    var isloading =true.obs;
+AddAdressTolist(Datum datas);
+removeadressfromlist(int index);
+
+}
+
+class AddAdresscontrollerimp extends AddAdresscontroller{
+    statuesRequest ?statesrequest ;
+  
+
+    var res ;
+initaldata() async {
+res = await checkInterNet();
+}
+
+ 
+  @override
+  GetAdress()async {
+  var Adress =await GetAdressServices.Getadresses();
+  try {
+    isloading.value=false;
+    if (Adress.isNotEmpty) {
+      datas.addAll(Adress);
+      
+    }
+  } finally {
+    isloading.value=false;
+    
   }
+  }
+
+@override
+  void onInit() async{
+   await GetAdress();
+    super.onInit();
+  }
+
+  @override
+  AddAdressTolist(items)  {
+ datas.add(items);
+ update(datas);
+  }
+  
+  @override
+ removeadressfromlist(index) {
+  datas.removeAt(index);
+  update(datas);
+  }
+  
   
   @override
   Future postAdress() async {
@@ -107,65 +125,8 @@ else {
   print(response.statusMessage);
 }
   }
-  
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 

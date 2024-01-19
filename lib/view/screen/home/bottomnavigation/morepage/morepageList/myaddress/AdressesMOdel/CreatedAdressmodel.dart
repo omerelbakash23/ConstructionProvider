@@ -1,4 +1,4 @@
-// ignore: file_names
+// ignore_for_file: file_names
 //   // To parse this JSON data, do
 // //
 // //     final createAdresses = createAdressesFromJson(jsonString);
@@ -15,7 +15,7 @@
 //     Data? data;
 
 //     CreateAdresses({
-//         this.data,
+//         this.data, 
 //     });
 
 //     factory CreateAdresses.fromJson(Map<String, dynamic> json) => CreateAdresses(

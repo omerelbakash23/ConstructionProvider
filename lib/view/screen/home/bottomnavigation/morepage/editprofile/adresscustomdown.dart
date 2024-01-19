@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:constructionprovider1/core/constant/colors.dart';
-import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/AddAdress.dart';
+import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/editprofile/AddAdress.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
