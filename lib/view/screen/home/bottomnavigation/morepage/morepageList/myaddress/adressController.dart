@@ -46,6 +46,7 @@ signupControllerIMp controller=Get.put(signupControllerIMp());
 abstract class AddAdresscontroller extends GetxController{
   GetAdress();
     postAdress();
+    deletadresses();
         var datas =<Datum>[].obs;
     var isloading =true.obs;
 AddAdressTolist(Datum datas);
@@ -96,7 +97,7 @@ res = await checkInterNet();
   Future postAdress() async {
     var headers = {
   'Accept': 'application/json',
-  'Authorization': 'Bearer 11|5Uhog019fR8DahWU8eIrTmbeYZNxDjyf53fsQL2gce17affd'
+  'Authorization': controller.Apptoken
 };
 
 var dio = Dio();
@@ -111,6 +112,29 @@ var response = await dio.request(
   'description': 'sfsdflsdflmsdlmfdlsmflsmdflldmsfsdf',
   'house_name': 'Test Name'
   },
+);
+
+if (response.statusCode == 200) {
+  print(json.encode(response.data));
+}
+else {
+  print(response.statusMessage);
+}
+  }
+  
+  @override
+  Future deletadresses() async {
+    var headers = {
+  'Accept': 'application/json',
+  'Authorization': controller.Apptoken
+};
+var dio = Dio();
+ var response = await dio.request(
+  'https://sos-api.rowadtqnee.online/provider/addresses/:id',
+  options: Options(
+    method: 'DELETE',
+    headers: headers,
+  ),  
 );
 
 if (response.statusCode == 200) {
