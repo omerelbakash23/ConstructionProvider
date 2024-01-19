@@ -22,7 +22,6 @@ class _MyaddresessState extends State<Myaddresess> {
 
   @override
   void initState() {
-    controller.GetAdress();
     citytext.clear();
     describtion.clear();
 

@@ -67,7 +67,7 @@ res = await checkInterNet();
   GetAdress()async {
   var Adress =await GetAdressServices.Getadresses();
   try {
-    isloading.value=false;
+    isloading.value=true;
     if (Adress.isNotEmpty) {
       datas.addAll(Adress);
       
@@ -78,11 +78,6 @@ res = await checkInterNet();
   }
   }
 
-@override
-  void onInit() async{
-   await GetAdress();
-    super.onInit();
-  }
 
   @override
   AddAdressTolist(items)  {

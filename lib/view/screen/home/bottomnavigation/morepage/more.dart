@@ -6,6 +6,7 @@ import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/Financial%20dues/Financial.dart';
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/Myaddresses.dart';
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/connectwithus/connectWithus.dart';
+import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/adressController.dart';
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/setting/setting.dart';
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/worktime/worktime.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class MorePage extends StatefulWidget {
 }
 class _MorePageState extends State<MorePage> {
    BottomnavController controllers =Get.put(BottomnavController());
+   AddAdresscontrollerimp controlleradress=Get.put(AddAdresscontrollerimp());
 
   @override
   Widget build(BuildContext context) {
@@ -200,7 +202,8 @@ class _MorePageState extends State<MorePage> {
                       padding: const EdgeInsets.only(
                           top: 20, right: 30, left: 30, bottom: 20),
                       child: InkWell(
-                        onTap: () {
+                        onTap: () async{
+                             await controlleradress.GetAdress();
                           Get.to(() => const Myaddresess());
                         },
                         child: Row(
