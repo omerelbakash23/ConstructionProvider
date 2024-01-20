@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:constructionprovider1/core/Class/statuesResult.dart';
 import 'package:constructionprovider1/core/function/checkinternet.dart';
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/AdressesMOdel/ListAdressesModel.dart';
+import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/Myaddresses.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/RegisterController.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
@@ -108,9 +109,10 @@ var response = await dio.request(
     headers: headers,
   ),
   data: {
-   'city_id': '1',
-  'description': 'sfsdflsdflmsdlmfdlsmflsmdflldmsfsdf',
-  'house_name': 'Test Name'
+  'id':'1',
+  'description': describtion.text,
+  'house_name':citytext.text,
+  
   },
 );
 
@@ -130,7 +132,7 @@ else {
 };
 var dio = Dio();
  var response = await dio.request(
-  'https://sos-api.rowadtqnee.online/provider/addresses/:id',
+  'https://sos-api.rowadtqnee.online/provider/addresses/:id?=',
   options: Options(
     method: 'DELETE',
     headers: headers,

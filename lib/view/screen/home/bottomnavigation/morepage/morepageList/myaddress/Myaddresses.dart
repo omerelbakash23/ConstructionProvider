@@ -21,7 +21,6 @@ class _MyaddresessState extends State<Myaddresess> {
   void initState() {
     citytext.clear();
     describtion.clear();
-
     super.initState();
   }
   @override
@@ -153,7 +152,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                                   color: Colors.red)),
                                           child: InkWell(
                                             onTap: ()  async{
-                                              await controlleradress.deletadresses();
+                                              // await controlleradress.deletadresses();
                                               setState(() {
                                                 Get.defaultDialog(
                                                     title: "",
@@ -573,7 +572,8 @@ class _MyaddresessState extends State<Myaddresess> {
                                                               20)),
                                                   backgroundColor:
                                                       AppColors.colorsbutton),
-                                              onPressed: () {
+                                              onPressed: () async {
+                                                controlleradress.postAdress();
                                                 setState(() {
                                                   controlleradress.AddAdressTolist(
                                                       Datum(
