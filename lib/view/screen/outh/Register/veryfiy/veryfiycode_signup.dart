@@ -21,23 +21,21 @@ class VeryFiyCodesignup extends StatefulWidget {
 class _VeryFiyCodesignupState extends State<VeryFiyCodesignup> {
   bool returns =true;
    int counter = 60 ;
-late Timer timer;
-  timers() {
+late Timer timers;
+  void timersVeryation() {
     counter =60;
-    timer=Timer.periodic(const Duration(milliseconds: 750),(timer){
+    timers=Timer.periodic(const Duration(milliseconds: 750),(timer){
       if (counter>0) {
         setState(() {
          counter--;
         });
+        
+    }else{
+      timers.cancel();
     }
     });
     }
 
-    @override
-  void dispose() {
-    timers();
-    super.dispose();
-  }
 
 
   @override
@@ -106,42 +104,45 @@ late Timer timer;
                     }),
               ),
              
-             Center(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          timers();
-                          controllers.resendOtp();   
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("OTP has been sent")));
-                        });
-                      },
+             Padding(
+               padding:  EdgeInsets.all(MediaQuery.of(context).size.height*.03),
+               child: Center(
                       child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            timersVeryation();
+                            controllers.resendOtp();   
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("OTP has been sent")));
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            Image.asset("assets/images/return.png"),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                             Text(
+                              "Resend_signup".tr,
+                              style:  TextStyle(
+                                  fontSize:returns ? 18:22, fontWeight: returns ?FontWeight.normal:FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),const SizedBox(width: 10,),
+                      Row(textDirection: TextDirection.rtl,
                         children: [
-                          Image.asset("assets/images/return.png"),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                           Text(
-                            "Resend_signup".tr,
-                            style:  TextStyle(
-                                fontSize:returns ? 18:22, fontWeight: returns ?FontWeight.normal:FontWeight.bold),
-                          ),
+                          Text("Code_after".tr,style: const TextStyle(color: Colors.grey)),
+                          Text(" $counter ",style: const TextStyle(color: Colors.grey)),
+                          Text("second".tr,style: const TextStyle(color: Colors.grey),),
+               
                         ],
                       ),
-                    ),const SizedBox(width: 10,),
-                    Row(textDirection: TextDirection.rtl,
-                      children: [
-                        Text("Code_after".tr,style: const TextStyle(color: Colors.grey)),
-                        Text(" $counter ",style: const TextStyle(color: Colors.grey)),
-                        Text("second".tr,style: const TextStyle(color: Colors.grey),),
-
-                      ],
-                    ),
-                  ],
-                )),
+                    ],
+                  )),
+             ),
 
                 Padding(
                   padding: const EdgeInsets.all(20.0),

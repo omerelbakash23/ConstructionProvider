@@ -6,6 +6,7 @@ import 'package:constructionprovider1/core/Class/statuesResult.dart';
 import 'package:constructionprovider1/core/function/checkinternet.dart';
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/AdressesMOdel/ListAdressesModel.dart';
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/Myaddresses.dart';
+import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/citybotton.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/RegisterController.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
@@ -48,14 +49,16 @@ abstract class AddAdresscontroller extends GetxController{
   GetAdress();
     postAdress();
     deletadresses();
-        var datas =<Datum>[].obs;
-    var isloading =true.obs;
+var datas =<Datum>[].obs;
+var isloading =true.obs;
 AddAdressTolist(Datum datas);
 removeadressfromlist(int index);
 
 }
 
 class AddAdresscontrollerimp extends AddAdresscontroller{
+
+
     statuesRequest ?statesrequest ;
   
 
@@ -109,12 +112,13 @@ var response = await dio.request(
     headers: headers,
   ),
   data: {
-  'id':'1',
+  'id':city_idscontrollers.toString(),
   'description': describtion.text,
-  'house_name':citytext.text,
+  'house_name':selectedCitys!.name.toString(),
   
   },
 );
+print(response.data);
 
 if (response.statusCode == 200) {
   print(json.encode(response.data));
@@ -132,7 +136,7 @@ else {
 };
 var dio = Dio();
  var response = await dio.request(
-  'https://sos-api.rowadtqnee.online/provider/addresses/:id?=',
+  'https://sos-api.rowadtqnee.online/provider/addresses/:id',
   options: Options(
     method: 'DELETE',
     headers: headers,

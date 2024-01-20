@@ -59,7 +59,7 @@ class signupControllerIMp extends signUpController {
 
   @override
   void onInit() async {
-    await Citycontroller.getcities();
+    // await Citycontroller.getcities();
     // emailscontroller = TextEditingController();
     // passwordcontroller = TextEditingController();
     // usernamecontroller = TextEditingController();

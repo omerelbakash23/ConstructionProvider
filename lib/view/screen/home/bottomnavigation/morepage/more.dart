@@ -202,8 +202,7 @@ class _MorePageState extends State<MorePage> {
                       padding: const EdgeInsets.only(
                           top: 20, right: 30, left: 30, bottom: 20),
                       child: InkWell(
-                        onTap: () async{
-                             await controlleradress.GetAdress();
+                        onTap: () {
                           Get.to(() => const Myaddresess());
                         },
                         child: Row(

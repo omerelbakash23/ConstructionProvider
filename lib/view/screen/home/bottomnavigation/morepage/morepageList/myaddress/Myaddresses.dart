@@ -4,6 +4,8 @@ import 'package:constructionprovider1/core/constant/ImageAssets.dart';
 import 'package:constructionprovider1/core/constant/colors.dart';
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/AdressesMOdel/ListAdressesModel.dart';
 import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/adressController.dart';
+import 'package:constructionprovider1/view/screen/home/bottomnavigation/morepage/morepageList/myaddress/citybotton.dart';
+import 'package:constructionprovider1/view/screen/outh/Register/choosecity/citiycontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,27 +14,27 @@ class Myaddresess extends StatefulWidget {
   @override
   State<Myaddresess> createState() => _MyaddresessState();
 }
-TextEditingController citytext = TextEditingController();
 TextEditingController describtion = TextEditingController();
 AddAdresscontrollerimp controlleradress = Get.put(AddAdresscontrollerimp());
+Citycontrollersimp controllers= Get.put(Citycontrollersimp());
+
 class _MyaddresessState extends State<Myaddresess> {
 
   @override
   void initState() {
-    citytext.clear();
+        controlleradress.GetAdress();
+     controllers.getcities();
     describtion.clear();
     super.initState();
   }
   @override
   void dispose() {
-    citytext;
     describtion;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
@@ -117,7 +119,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                             width: 10,
                                           ),
                                           Text(
-                                            controlleradress.datas[index].houseName
+                                            selectedCitys!.name.toString()
                                                 .toString(),
                                             style: Theme.of(context)
                                                 .textTheme
@@ -139,7 +141,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                                       const Color(0xffF9F3BE)),
                                               child: Center(
                                                   child:
-                                                      Text(controlleradress.datas[index].id.toString()))),
+                                                      Text(selectedCitys!.id.toString()))),
                                         ],
                                       ),
                                       Container(
@@ -381,7 +383,7 @@ class _MyaddresessState extends State<Myaddresess> {
                         content: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SizedBox(
-                            height: MediaQuery.of(context).size.height * .40,
+                            height: MediaQuery.of(context).size.height * .5,
                             width: MediaQuery.of(context).size.width,
                             child: ListView(children: [
                               Row(
@@ -439,48 +441,15 @@ class _MyaddresessState extends State<Myaddresess> {
                                         ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 10, left: 10),
-                                      child: SizedBox(
-                                        width: double.infinity,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                .06,
-                                        child: TextFormField(
-                                          textDirection: TextDirection.ltr,
-                                          controller: citytext,
-                                          decoration: InputDecoration(
-                                              filled: true,
-                                              focusedBorder: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  borderSide: const BorderSide(
-                                                      color: AppColors.grey)),
-                                              hintText: "write here".tr,
-                                              focusColor: AppColors.grey,
-                                              fillColor: const Color.fromARGB(
-                                                  175, 235, 227, 227),
-                                              hintStyle: const TextStyle(
-                                                  fontSize: 12,
-                                                  color: AppColors.black),
-                                              enabledBorder: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  borderSide: const BorderSide(
-                                                      color: AppColors.grey)),
-                                              disabledBorder: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  borderSide: const BorderSide(
-                                                      color: AppColors.grey)),
-                                              contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 30),
-                                              border: OutlineInputBorder(borderSide: const BorderSide(color: AppColors.grey, width: 6), borderRadius: BorderRadius.circular(15))),
-                                        ),
-                                      ),
+                                    SizedBox(
+                                      width: double.infinity,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .1,
+                                      child: const CityButton()
                                     ),
                                     const SizedBox(
-                                      height: 20,
+                                      height: 10,
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -506,8 +475,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 10, left: 10),
+                                      padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.05,left: MediaQuery.of(context).size.width*.05),
                                       child: SizedBox(
                                         width: double.infinity,
                                         height:
@@ -525,8 +493,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                                       color: AppColors.grey)),
                                               hintText: "write here".tr,
                                               focusColor: AppColors.grey,
-                                              fillColor: const Color.fromARGB(
-                                                  175, 235, 227, 227),
+                                              fillColor: Colors.white,
                                               hintStyle: const TextStyle(
                                                   fontSize: 12,
                                                   color: AppColors.black),
@@ -577,7 +544,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                                 setState(() {
                                                   controlleradress.AddAdressTolist(
                                                       Datum(
-                                                        description: describtion.text,houseName: citytext.text
+                                                        description: describtion.text,houseName:selectedCitys!.name.toString()
                                                       )
                                                   );
                                                 });

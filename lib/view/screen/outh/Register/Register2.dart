@@ -8,6 +8,7 @@ import 'package:constructionprovider1/core/constant/colors.dart';
 import 'package:constructionprovider1/core/function/validinput.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/RegisterController.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/RegisterModelResponse.dart';
+import 'package:constructionprovider1/view/screen/outh/Register/choosecity/citiycontroller.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/customfieldRegister/Customfieldtype.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/customfieldRegister/customfieldcarer.dart';
 import 'package:constructionprovider1/view/screen/outh/Register/customfieldRegister/customfieldcity.dart';
@@ -25,13 +26,18 @@ class SignUpscreen2 extends StatefulWidget {
 }
 
 signupControllerIMp controller =Get.put(signupControllerIMp());
+Citycontrollersimp controllers=Get.put(Citycontrollersimp());
 
 List <IdWithNameModel>kind=[IdWithNameModel(id: 1,name: "service provider"),IdWithNameModel(id: 2,name: "buildings materials provider")];
 File ?selectimage ;
 IdWithNameModel ? currentKind ;
 bool load =true;
 class _SignUpscreen2State extends State<SignUpscreen2> {
-
+@override
+  void initState() {
+    controllers.getcities();
+    super.initState();
+  }
   @override 
   Widget build(BuildContext context) {
     return SafeArea(
