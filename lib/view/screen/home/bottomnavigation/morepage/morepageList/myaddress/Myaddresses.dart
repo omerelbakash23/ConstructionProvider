@@ -22,9 +22,9 @@ class _MyaddresessState extends State<Myaddresess> {
 
   @override
   void initState() {
-        controlleradress.GetAdress();
-     controllers.getcities();
-    describtion.clear();
+   controlleradress.GetAdress();
+   controllers.getcities();
+   describtion.clear();
     super.initState();
   }
   @override
@@ -119,7 +119,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                             width: 10,
                                           ),
                                           Text(
-                                            selectedCitys!.name.toString()
+                                            controlleradress.datas[index].city.toString()
                                                 .toString(),
                                             style: Theme.of(context)
                                                 .textTheme
@@ -141,7 +141,7 @@ class _MyaddresessState extends State<Myaddresess> {
                                                       const Color(0xffF9F3BE)),
                                               child: Center(
                                                   child:
-                                                      Text(selectedCitys!.id.toString()))),
+                                                      Text( controlleradress.datas[index].id.toString()))),
                                         ],
                                       ),
                                       Container(
@@ -380,249 +380,251 @@ class _MyaddresessState extends State<Myaddresess> {
                   setState(() {
                     Get.defaultDialog(
                         title: "",
-                        content: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            height: MediaQuery.of(context).size.height * .5,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView(children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(
-                                    Icons.add,
-                                    size: 25,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "Add address".tr,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displayLarge!
-                                        .copyWith(
-                                            fontSize: 18, color: Colors.black),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * .03,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 5, left: 5),
-                                child: Column(
+                        content: SingleChildScrollView(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * .4,
+                              width: MediaQuery.of(context).size.width,
+                              child: ListView(children: [
+                                Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  textDirection: TextDirection.rtl,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          right: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .04,
-                                          left: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .04,
-                                          bottom: 10),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "City".tr,
-                                            style: const TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: double.infinity,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              .1,
-                                      child: const CityButton()
+                                    const Icon(
+                                      Icons.add,
+                                      size: 25,
                                     ),
                                     const SizedBox(
-                                      height: 10,
+                                      width: 10,
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          right: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .04,
-                                          left: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .04,
-                                          bottom: 10),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "the description".tr,
-                                            style: const TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13),
-                                          ),
-                                        ],
+                                    Text(
+                                      "Add address".tr,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displayLarge!
+                                          .copyWith(
+                                              fontSize: 18, color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * .03,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(right: 5, left: 5),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    textDirection: TextDirection.rtl,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            right: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .04,
+                                            left: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .04,
+                                            ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "City".tr,
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 13),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.05,left: MediaQuery.of(context).size.width*.05),
-                                      child: SizedBox(
+                                      SizedBox(
                                         width: double.infinity,
                                         height:
                                             MediaQuery.of(context).size.height *
+                                                .1,
+                                        child: const CityButton()
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            right: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
                                                 .04,
-                                        child: TextFormField(
-                                          textDirection: TextDirection.ltr,
-                                          controller: describtion,
-                                          decoration: InputDecoration(
-                                              filled: true,
-                                              focusedBorder: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  borderSide: const BorderSide(
-                                                      color: AppColors.grey)),
-                                              hintText: "write here".tr,
-                                              focusColor: AppColors.grey,
-                                              fillColor: Colors.white,
-                                              hintStyle: const TextStyle(
-                                                  fontSize: 12,
-                                                  color: AppColors.black),
-                                              enabledBorder: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  borderSide: const BorderSide(
-                                                      color: AppColors.grey)),
-                                              disabledBorder: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  borderSide: const BorderSide(
-                                                      color: AppColors.grey)),
-                                              contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 30),
-                                              border: OutlineInputBorder(borderSide: const BorderSide(color: AppColors.grey, width: 6), borderRadius: BorderRadius.circular(15))),
+                                            left: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .04,
+                                            bottom: 10),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "the description".tr,
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 13),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        right:
-                                            MediaQuery.of(context).size.width *
-                                                .04,
-                                        left:
-                                            MediaQuery.of(context).size.width *
-                                                .04,
-                                        top:
-                                            MediaQuery.of(context).size.height *
-                                                .03,
+                                      Padding(
+                                        padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.05,left: MediaQuery.of(context).size.width*.05),
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          height:
+                                              MediaQuery.of(context).size.height *
+                                                  .04,
+                                          child: TextFormField(
+                                            textDirection: TextDirection.ltr,
+                                            controller: describtion,
+                                            decoration: InputDecoration(
+                                                filled: true,
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(15),
+                                                    borderSide: const BorderSide(
+                                                        color: AppColors.grey)),
+                                                hintText: "write here".tr,
+                                                focusColor: AppColors.grey,
+                                                fillColor: Colors.white,
+                                                hintStyle: const TextStyle(
+                                                    fontSize: 12,
+                                                    color: AppColors.black),
+                                                enabledBorder: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(15),
+                                                    borderSide: const BorderSide(
+                                                        color: AppColors.grey)),
+                                                disabledBorder: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(15),
+                                                    borderSide: const BorderSide(
+                                                        color: AppColors.grey)),
+                                                contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 30),
+                                                border: OutlineInputBorder(borderSide: const BorderSide(color: AppColors.grey, width: 6), borderRadius: BorderRadius.circular(15))),
+                                          ),
+                                        ),
                                       ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          ElevatedButton(
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          right:
+                                              MediaQuery.of(context).size.width *
+                                                  .04,
+                                          left:
+                                              MediaQuery.of(context).size.width *
+                                                  .04,
+                                          top:
+                                              MediaQuery.of(context).size.height *
+                                                  .03,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    shape: RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                20)),
+                                                    backgroundColor:
+                                                        AppColors.colorsbutton),
+                                                onPressed: () async {
+                                                  controlleradress.postAdress();
+                                                  setState(() {
+                                                    controlleradress.AddAdressTolist(
+                                                        Datum(
+                                                          description: describtion.text,houseName:selectedCitys!.name.toString()
+                                                        )
+                                                    );
+                                                  });
+                                                  Get.back();
+                                                },
+                                                child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right:
+                                                            MediaQuery.of(context)
+                                                                    .size
+                                                                    .width *
+                                                                .03,
+                                                        left:
+                                                            MediaQuery.of(context)
+                                                                    .size
+                                                                    .width *
+                                                                .03,
+                                                        top: 10,
+                                                        bottom: 10),
+                                                    child: Text(
+                                                      "addition".tr,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .displayLarge!
+                                                          .copyWith(
+                                                              fontSize: 16,
+                                                              color:
+                                                                  Colors.black),
+                                                    ))),
+                                            SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .01),
+                                            ElevatedButton(
                                               style: ElevatedButton.styleFrom(
+                                                  side: const BorderSide(
+                                                      color: Colors.black,
+                                                      width: 1.2),
                                                   shape: RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               20)),
-                                                  backgroundColor:
-                                                      AppColors.colorsbutton),
-                                              onPressed: () async {
-                                                controlleradress.postAdress();
-                                                setState(() {
-                                                  controlleradress.AddAdressTolist(
-                                                      Datum(
-                                                        description: describtion.text,houseName:selectedCitys!.name.toString()
-                                                      )
-                                                  );
-                                                });
+                                                  backgroundColor: Colors.white),
+                                              onPressed: () {
                                                 Get.back();
                                               },
                                               child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              .03,
-                                                      left:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              .03,
-                                                      top: 10,
-                                                      bottom: 10),
-                                                  child: Text(
-                                                    "addition".tr,
+                                                padding: EdgeInsets.only(
+                                                    right: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        .03,
+                                                    left: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        .03,
+                                                    top: 10,
+                                                    bottom: 10),
+                                                child: Text("cancel".tr,
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .displayLarge!
                                                         .copyWith(
                                                             fontSize: 16,
-                                                            color:
-                                                                Colors.black),
-                                                  ))),
-                                          SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  .01),
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                side: const BorderSide(
-                                                    color: Colors.black,
-                                                    width: 1.2),
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20)),
-                                                backgroundColor: Colors.white),
-                                            onPressed: () {
-                                              Get.back();
-                                            },
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  right: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      .03,
-                                                  left: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      .03,
-                                                  top: 10,
-                                                  bottom: 10),
-                                              child: Text("cancel".tr,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .displayLarge!
-                                                      .copyWith(
-                                                          fontSize: 16,
-                                                          color: Colors.black)),
-                                            ),
-                                          )
-                                        ],
+                                                            color: Colors.black)),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 40,
-                                    ),
-                                  ],
+                                      const SizedBox(
+                                        height: 40,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ]),
+                              ]),
+                            ),
                           ),
                         ));
                   });
