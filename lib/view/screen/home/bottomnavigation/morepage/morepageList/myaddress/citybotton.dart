@@ -13,7 +13,6 @@ class CityButton extends StatefulWidget {
   State<CityButton> createState() => _CityButtonState();
   
 }
-int? city_idscontrollers;
 bool isopens = false;
 CityModel ? selectedCitys ;
 
@@ -72,7 +71,7 @@ class _CityButtonState extends State<CityButton> {
               child: Container(decoration: BoxDecoration(color: Colors.white,borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),border: Border.all(color: const Color.fromARGB(48, 158, 158, 158))),
                 child: Center(
                   child:
-                   Citycontroller.isloading.value==true ?SizedBox(height: MediaQuery.of(context).size.height*.15,child: const Center(child: CircularProgressIndicator(color:AppColors.colorsbutton,))):
+                   Citycontroller.isloading.value==true ?SizedBox(height: MediaQuery.of(context).size.height*.2,child: const Center(child: CircularProgressIndicator(color:AppColors.colorsbutton,))):
                   ListView.builder(itemCount:Citycontroller.CitiesList.length ,
                       primary: true,
                       shrinkWrap: true,
@@ -86,7 +85,6 @@ class _CityButtonState extends State<CityButton> {
                                   setState(()  {
                                     isopens =false;
                                     selectedCitys=Citycontroller.CitiesList[index];
-                                    city_idscontrollers=selectedCitys!.id;
                                   });
                                 }, child: Padding(
                                   padding: const EdgeInsets.only(left: 20, right: 20),

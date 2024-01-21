@@ -112,9 +112,9 @@ var response = await dio.request(
     headers: headers,
   ),
   data: {
-  'id':city_idscontrollers.toString(),
+  'id':selectedCitys?.id.toString()??"",
   'description': describtion.text,
-  'house_name':selectedCitys!.name.toString(),
+  'house_name':selectedCitys?.name.toString()??"",
   
   },
 );

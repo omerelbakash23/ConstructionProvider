@@ -417,7 +417,6 @@ class _MyaddresessState extends State<Myaddresess> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                    textDirection: TextDirection.rtl,
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(
@@ -442,15 +441,13 @@ class _MyaddresessState extends State<Myaddresess> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: double.infinity,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                .1,
-                                        child: const CityButton()
-                                      ),
                                       const SizedBox(
-                                        height: 10,
+                                        width: double.infinity,
+                                        
+                                        child: CityButton()
+                                      ),
+                                       SizedBox(
+                                        height: MediaQuery.of(context).size.height*.04,
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(
